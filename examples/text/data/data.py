@@ -16,8 +16,8 @@ from omegaconf import OmegaConf
 from torch.utils.data import DataLoader
 from transformers import GPT2TokenizerFast
 
-from .tokenizer import wt_detokenizer
-from .utils import cycle_loader, StatefulDistributedSampler
+from data.tokenizer import wt_detokenizer
+from data.utils import cycle_loader, StatefulDistributedSampler
 
 
 def _get_hf_dataset(
