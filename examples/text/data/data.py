@@ -82,7 +82,8 @@ def _get_hf_dataset(
             if k != "input_ids":
                 tokenized_dataset = tokenized_dataset.remove_columns(k)
     else:
-        tokenized_dataset = tokenized_dataset.remove_columns("text")
+        cols_to_remove = [c for c in ["text", "Text"] if c in tokenized_dataset.column_names]
+        tokenized_dataset = tokenized_dataset.remove_columns(cols_to_remove)
 
     def group_texts(examples: Dict):
         # Concatenate all texts.
