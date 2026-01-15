@@ -53,7 +53,10 @@ def _get_hf_dataset(
     EOS = tokenizer.encode(tokenizer.eos_token)[0]
 
     def preprocess_and_tokenize(example: Dict):
-        text = example["text"]
+        # Gracefully handle "text" or "Text"
+        text = example.get("text", example.get("Text"))
+        if text is None:
+             raise KeyError(f"Could not find 'text' or 'Text' in example keys: {example.keys()}")
 
         if detokenizer is not None:
             text = _apply_detokenizer(detokenizer)(text)
