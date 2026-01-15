@@ -160,7 +160,7 @@ def get_data_state(config: OmegaConf) -> DataState:
     )
     test = _get_dataset(
         name=config.data.valid,
-        mode="validation",
+        mode="test",
         cache_dir=config.data.cache_dir,
         block_size=config.model.length,
         num_proc=config.data.num_workers,
